@@ -48,7 +48,8 @@ void Game::UpdateField(Player &player, bool from_bot) {
     if (index_i_to > index_i_from && index_j_to > index_j_from) {
         int cur_i = index_i_from + 1;
         int cur_j = index_j_from + 1;
-        while (cur_i < CheckersField::size_field && cur_j < CheckersField::size_field && cur_i != index_i_to && cur_j != index_j_to) {
+        while (cur_i < CheckersField::size_field && cur_j < CheckersField::size_field && cur_i != index_i_to &&
+               cur_j != index_j_to) {
             if (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) {
                 field_[cur_i][cur_j] = NONE;
                 human_.ReduceCheckers();
@@ -101,7 +102,7 @@ bool Game::CheckPosition(int i, int j) {
                     return false;
                 }
             }
-        } else { // check Queen
+        } else {  // check Queen
             int cur_i = i;
             int cur_j = j;
             while (cur_i > 0 && cur_j < CheckersField::size_field - 1) {
@@ -125,7 +126,7 @@ bool Game::CheckPosition(int i, int j) {
                     return false;
                 }
             }
-        } else { // check Queen
+        } else {  // check Queen
             int cur_i = i;
             int cur_j = j;
             while (cur_i > 0 && cur_j > 0) {
@@ -149,7 +150,7 @@ bool Game::CheckPosition(int i, int j) {
                     return false;
                 }
             }
-        } else { // check Queen
+        } else {  // check Queen
             int cur_i = i;
             int cur_j = j;
             while (cur_i < CheckersField::size_field - 1 && cur_j > 0) {
@@ -173,7 +174,7 @@ bool Game::CheckPosition(int i, int j) {
                     return false;
                 }
             }
-        } else { // check Queen
+        } else {  // check Queen
             int cur_i = i;
             int cur_j = j;
             while (cur_i < CheckersField::size_field - 1 && cur_j < CheckersField::size_field - 1) {
@@ -183,7 +184,8 @@ bool Game::CheckPosition(int i, int j) {
                     break;
                 }
             }
-            if (cur_i < CheckersField::size_field && cur_j < CheckersField::size_field && field_[cur_i][cur_j] == QUEEN_WHITE) {
+            if (cur_i < CheckersField::size_field && cur_j < CheckersField::size_field &&
+                field_[cur_i][cur_j] == QUEEN_WHITE) {
                 if (field_[i - 1][j - 1] == NONE) {
                     return false;
                 }
@@ -200,7 +202,8 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
             if (field_[i][j] == BLACK) {
                 if (i > 0) {
                     if (j > 0) {
-                        if ((field_[i - 1][j - 1] == WHITE || field_[i - 1][j - 1] == QUEEN_WHITE) && i - 1 > 0 && j - 1 > 0 && field_[i - 2][j - 2] == NONE) {
+                        if ((field_[i - 1][j - 1] == WHITE || field_[i - 1][j - 1] == QUEEN_WHITE) && i - 1 > 0 &&
+                            j - 1 > 0 && field_[i - 2][j - 2] == NONE) {
                             Checker prev = field_[i - 1][j - 1];
                             field_[i - 1][j - 1] = NONE;
                             if (!safety || CheckPosition(i - 2, j - 2)) {
@@ -215,7 +218,8 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
                         }
                     }
                     if (j < CheckersField::size_field - 1) {
-                        if ((field_[i - 1][j + 1] == WHITE || field_[i - 1][j + 1] == QUEEN_WHITE) && i - 1 > 0 && j + 1 < CheckersField::size_field - 1 && field_[i - 2][j + 2] == NONE) {
+                        if ((field_[i - 1][j + 1] == WHITE || field_[i - 1][j + 1] == QUEEN_WHITE) && i - 1 > 0 &&
+                            j + 1 < CheckersField::size_field - 1 && field_[i - 2][j + 2] == NONE) {
                             Checker prev = field_[i - 1][j + 1];
                             field_[i - 1][j + 1] = NONE;
                             if (!safety || CheckPosition(i - 2, j + 2)) {
@@ -232,7 +236,8 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
                 }
                 if (i < CheckersField::size_field - 1) {
                     if (j > 0) {
-                        if ((field_[i + 1][j - 1] == WHITE || field_[i + 1][j - 1] == QUEEN_WHITE) && i + 1 < CheckersField::size_field - 1 && j - 1 > 0 && field_[i + 2][j - 2] == NONE) {
+                        if ((field_[i + 1][j - 1] == WHITE || field_[i + 1][j - 1] == QUEEN_WHITE) &&
+                            i + 1 < CheckersField::size_field - 1 && j - 1 > 0 && field_[i + 2][j - 2] == NONE) {
                             Checker prev = field_[i + 1][j - 1];
                             field_[i + 1][j - 1] = NONE;
                             if (!safety || CheckPosition(i + 2, j - 2)) {
@@ -247,7 +252,9 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
                         }
                     }
                     if (j < CheckersField::size_field - 1) {
-                        if ((field_[i + 1][j + 1] == WHITE || field_[i + 1][j + 1] == QUEEN_WHITE) && i + 1 < CheckersField::size_field - 1 && j + 1 < CheckersField::size_field - 1 && field_[i + 2][j + 2] == NONE) {
+                        if ((field_[i + 1][j + 1] == WHITE || field_[i + 1][j + 1] == QUEEN_WHITE) &&
+                            i + 1 < CheckersField::size_field - 1 && j + 1 < CheckersField::size_field - 1 &&
+                            field_[i + 2][j + 2] == NONE) {
                             Checker prev = field_[i + 1][j + 1];
                             field_[i + 1][j + 1] = NONE;
                             if (!safety || CheckPosition(i + 2, j + 2)) {
@@ -274,7 +281,9 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
                                 break;
                             }
                         }
-                        if (cur_i > 0 && cur_j > 0 && (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) && field_[cur_i - 1][cur_j - 1] == NONE) {
+                        if (cur_i > 0 && cur_j > 0 &&
+                            (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) &&
+                            field_[cur_i - 1][cur_j - 1] == NONE) {
                             Checker prev = field_[cur_i][cur_j];
                             field_[cur_i][cur_j] = NONE;
                             if (!safety || CheckPosition(cur_i - 1, cur_j - 1)) {
@@ -298,7 +307,9 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
                                 break;
                             }
                         }
-                        if (cur_i > 0 && cur_j < CheckersField::size_field - 2 && (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) && field_[cur_i - 1][cur_j + 1] == NONE) {
+                        if (cur_i > 0 && cur_j < CheckersField::size_field - 2 &&
+                            (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) &&
+                            field_[cur_i - 1][cur_j + 1] == NONE) {
                             Checker prev = field_[cur_i][cur_j];
                             field_[cur_i][cur_j] = NONE;
                             if (!safety || CheckPosition(cur_i - 1, cur_j + 1)) {
@@ -324,7 +335,9 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
                                 break;
                             }
                         }
-                        if (cur_i < CheckersField::size_field - 2 && cur_j > 0 && (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) && field_[cur_i + 1][cur_j - 1] == NONE) {
+                        if (cur_i < CheckersField::size_field - 2 && cur_j > 0 &&
+                            (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) &&
+                            field_[cur_i + 1][cur_j - 1] == NONE) {
                             Checker prev = field_[cur_i][cur_j];
                             field_[cur_i][cur_j] = NONE;
                             if (!safety || CheckPosition(cur_i + 1, cur_j - 1)) {
@@ -348,7 +361,9 @@ bool Game::CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety
                                 break;
                             }
                         }
-                        if (cur_i < CheckersField::size_field - 2 && cur_j < CheckersField::size_field - 2 && (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) && field_[cur_i + 1][cur_j + 1] == NONE) {
+                        if (cur_i < CheckersField::size_field - 2 && cur_j < CheckersField::size_field - 2 &&
+                            (field_[cur_i][cur_j] == WHITE || field_[cur_i][cur_j] == QUEEN_WHITE) &&
+                            field_[cur_i + 1][cur_j + 1] == NONE) {
                             Checker prev = field_[cur_i][cur_j];
                             field_[cur_i][cur_j] = NONE;
                             if (!safety || CheckPosition(cur_i + 1, cur_j + 1)) {
@@ -492,7 +507,7 @@ bool Game::CheckPlayer() {
 void Game::GameLoop() {
     std::cout << "This is your play field. You are going to play for the whites.\n";
     field_class_.PrintField();
-    while(true) {
+    while (true) {
         ReadMove();
         if (quit) {
             std::cout << "Thank you for game! See you soon)))\n";

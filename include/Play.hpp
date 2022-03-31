@@ -1,10 +1,14 @@
 #include <iostream>
 #include "Player.hpp"
 
-
 class Game {
 public:
-    Game() : bot_(BLACK), human_(WHITE), field_(field_class_.GetField()), cur_move_player_(2, ""), cur_move_bot_(2, std::vector<int>(2)) {};
+    Game()
+        : bot_(BLACK)
+        , human_(WHITE)
+        , field_(field_class_.GetField())
+        , cur_move_player_(2, "")
+        , cur_move_bot_(2, std::vector<int>(2)){};
     void GameLoop();
     void ReadMove();
     bool GetMove();

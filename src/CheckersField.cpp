@@ -55,28 +55,23 @@ void CheckersField::PrintField() const {
         std::cout << i + 1 << " ";
         for (int j = 0; j < size_; ++j) {
             switch (field_[i][j]) {
-                case BLACK:
-                {
+                case BLACK: {
                     std::cout << "b";
                     break;
                 }
-                case QUEEN_BLACK:
-                {
+                case QUEEN_BLACK: {
                     std::cout << "b";
                     break;
                 }
-                case WHITE:
-                {
+                case WHITE: {
                     std::cout << "w";
                     break;
                 }
-                case QUEEN_WHITE:
-                {
+                case QUEEN_WHITE: {
                     std::cout << "w";
                     break;
                 }
-                case NONE:
-                {
+                case NONE: {
                     std::cout << "0";
                     break;
                 }
