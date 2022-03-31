@@ -16,6 +16,7 @@ private:
     std::vector<std::vector<Checker>> field_;
     std::vector<std::string> cur_move_player_;
     std::vector<std::vector<int>> cur_move_bot_;
+    bool CheckPlayer();
     void UpdateField(Player &player, bool from_bot);
     bool CheckForMove(std::vector<int> &from, std::vector<int> &to, bool safety);
     bool CheckForEat(std::vector<int> &from, std::vector<int> &to, bool safety);

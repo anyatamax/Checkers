@@ -5,11 +5,11 @@ CheckersField::CheckersField() : field_(size_, std::vector<Checker>(size_, NONE)
         for (int j = 0; j < size_; ++j) {
             if (i % 2 == 0) {
                 if (j % 2 != 0) {
-                    field_[i][j] = BLACK;
+                    field_[i][j] = (i == 0) ? QUEEN_BLACK : BLACK;
                 }
             } else {
                 if (j % 2 == 0) {
-                    field_[i][j] = BLACK;
+                    field_[i][j] = (i == 0) ? QUEEN_BLACK : BLACK;
                 }
             }
         }
@@ -18,11 +18,11 @@ CheckersField::CheckersField() : field_(size_, std::vector<Checker>(size_, NONE)
         for (int j = 0; j < size_; ++j) {
             if (i % 2 == 0) {
                 if (j % 2 != 0) {
-                    field_[i][j] = WHITE;
+                    field_[i][j] = (i == size_ - 1) ? QUEEN_WHITE : WHITE;
                 }
             } else {
                 if (j % 2 == 0) {
-                    field_[i][j] = WHITE;
+                    field_[i][j] = (i == size_ - 1) ? QUEEN_WHITE : WHITE;
                 }
             }
         }
@@ -60,7 +60,17 @@ void CheckersField::PrintField() const {
                     std::cout << "b";
                     break;
                 }
+                case QUEEN_BLACK:
+                {
+                    std::cout << "b";
+                    break;
+                }
                 case WHITE:
+                {
+                    std::cout << "w";
+                    break;
+                }
+                case QUEEN_WHITE:
                 {
                     std::cout << "w";
                     break;

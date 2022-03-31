@@ -7,6 +7,8 @@ enum Checker {
     BLACK,
     WHITE,
     NONE,
+    QUEEN_BLACK,
+    QUEEN_WHITE,
 };
 
 class CheckersField {
