@@ -451,6 +451,10 @@ bool Game::GetMove() {
 void Game::ReadMove() {
     std::cout << "Please, enter your move:\n";
     std::cin >> cur_move_player_[0] >> cur_move_player_[1];
+    if (cur_move_player_[0] == "quit" && cur_move_player_[1] == "please") {
+        quit = true;
+        return;
+    }
     if (CheckPlayer()) {
         UpdateField(human_, false);
     } else {
@@ -479,7 +483,7 @@ bool Game::CheckPlayer() {
     if (field_[index_i_to][index_j_to] != NONE) {
         return false;
     }
-    if (abs(index_j_to - index_j_from) != abs(index_i_to - index_i_from) || abs(index_i_from - index_i_to) > 2) {
+    if (abs(index_j_to - index_j_from) != abs(index_i_to - index_i_from)) {
         return false;
     }
     return true;
@@ -490,6 +494,10 @@ void Game::GameLoop() {
     field_class_.PrintField();
     while(true) {
         ReadMove();
+        if (quit) {
+            std::cout << "Thank you for game! See you soon)))\n";
+            break;
+        }
         if (human_.GetCount() == 0) {
             std::cout << "You failed(\n";
             break;
